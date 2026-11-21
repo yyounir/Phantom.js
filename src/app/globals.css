@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #0a0712;
+}
+
+/* Haunted dashboard background: faint purple glow up top, blood glow below. */
+body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(168, 85, 247, 0.15), transparent),
+    radial-gradient(ellipse 60% 50% at 50% 120%, rgba(244, 63, 94, 0.08), transparent);
+}

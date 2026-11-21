@@ -1,0 +1,23 @@
+# dependencies
+/node_modules/
+/mcp-server/node_modules/
+
+# build output
+/.next/
+/mcp-server/dist/
+*.tsbuildinfo
+
+# env
+.env
+.env.local
+.env.*.local
+
+# next
+next-env.d.ts
+
+# os/editor
+.DS_Store
+*.log
+.vscode/
+.idea/
+.env
