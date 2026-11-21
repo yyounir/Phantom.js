@@ -13,6 +13,7 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 import type { HuntResult, Suspect, Verdict } from "@/lib/agent/types";
+import Link from "next/link";
 
 // ---------------------------------------------------------------------------
 // Theme
@@ -203,6 +204,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen text-zinc-100">
+      <header className="mx-auto flex max-w-5xl items-center justify-between px-4 pt-6">
+        <span className="font-mono text-xs uppercase tracking-widest text-fuchsia-400">Phantom.js</span>
+        <Link href="/features" className="font-mono text-sm text-zinc-400 transition hover:text-zinc-100">
+          Features →
+        </Link>
+      </header>
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-4 pt-16 pb-10">
         <p className="font-mono text-xs uppercase tracking-widest text-fuchsia-400">FinOps · Dead-Code Exorcist</p>
@@ -361,7 +368,7 @@ export default function Home() {
             <Trust title="0% FP build guarantee" body="Sandbox + Skeptic mean no removal ships unless the build still compiles." />
           </div>
           <p className="mt-6 text-center text-xs text-zinc-600">
-            Phantom.js — built for the Halloween AI hackathon.
+            Phantom.js — built for the Kiroween 2026 hackathon.
           </p>
         </section>
       )}
