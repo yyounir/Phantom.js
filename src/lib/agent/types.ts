@@ -1,11 +1,11 @@
 /**
- * Phantom.js — shared agent types.
- *
- * These mirror the JSON contracts returned by the MCP AST server tools and the
- * verdicts produced by the agent loop's policy guards.
+ * Phantom.js — shared agent + UI types.
+ * These mirror the JSON contracts produced by the agent loop (which in turn
+ * call the MCP server tools in mcp-server/src/index.ts).
  */
 
-/** How a textual reference was classified by find_references. */
+export type Verdict = "dead" | "uncertain" | "alive";
+
 export type ReferenceKind =
   | "import"
   | "call"
@@ -13,7 +13,6 @@ export type ReferenceKind =
   | "string-literal"
   | "other";
 
-/** A single reference match returned by the find_references MCP tool. */
 export interface ReferenceMatch {
   file: string;
   line: number;
@@ -22,7 +21,6 @@ export interface ReferenceMatch {
   kind: ReferenceKind;
 }
 
-/** A function declaration returned by the run_ast_parser MCP tool. */
 export interface FunctionInfo {
   name: string;
   kind: "function" | "arrow" | "function-expr" | "method";
@@ -34,11 +32,9 @@ export interface FunctionInfo {
   paramCount: number;
 }
 
-/** Agent verdict for a suspect function. */
-export type Verdict = "dead" | "uncertain" | "alive";
-
-/** One analyzed function + the evidence and reasoning behind its verdict. */
+/** One analyzed function + the Hunter/Skeptic Chain-of-Thought behind its verdict. */
 export interface Suspect {
+  id: string;
   file: string;
   functionName: string;
   kind: FunctionInfo["kind"];
@@ -47,21 +43,74 @@ export interface Suspect {
   isExported: boolean;
   referenceCount: number;
   referenceKinds: ReferenceKind[];
-  /** Barrel files that re-export this symbol (empty if none). */
   reexportedBy: string[];
   verdict: Verdict;
-  /** 0..1 confidence in the verdict. */
   confidence: number;
-  /** Chain-of-Thought steps emitted while reasoning about this function. */
-  reasoningTrace: string[];
+  /** Hunter Agent: flags zombie candidates. */
+  hunterTrace: string[];
+  /** Skeptic Agent: tries to disprove each flag. */
+  skepticTrace: string[];
 }
 
-/** The full output of an exorcism run. */
-export interface ExorcismReport {
-  repoPath: string;
-  scannedFiles: number;
-  suspects: Suspect[];
-  dead: Suspect[];
-  uncertain: Suspect[];
-  alive: Suspect[];
+/** Call-graph node — a function in the repo, colored by verdict in the UI. */
+export interface GraphNode {
+  id: string;
+  label: string;
+  file: string;
+  verdict: Verdict;
+  isExported: boolean;
+  referenceCount: number;
 }
+
+/** Call-graph edge — caller -> callee. */
+export interface GraphEdge {
+  id: string;
+  source: string; // caller node id
+  target: string; // callee node id
+}
+
+export interface FinopsResult {
+  removedLines: number;
+  removedBundleKB: number;
+  coldStartDeltaMs: number;
+  extraComputeSecondsPerMonth: number;
+  projectedSavingsUsd: number;
+  buildMinutesSavedPerMonth: number;
+  inputs: {
+    removedLines: number;
+    avgBytesPerLine: number;
+    monthlyInvocations: number;
+    coldStartFraction: number;
+    memoryGb: number;
+    pricePerGbSecond: number;
+  };
+}
+
+export interface SandboxResult {
+  safe: boolean;
+  issues: Array<{ removal: string; ref: ReferenceMatch }>;
+  note: string;
+}
+
+export interface HuntResult {
+  repo: {
+    kind: "local" | "github";
+    ref: string; // display: branch/ref or local path
+    url?: string;
+    filesScanned: number;
+  };
+  graph: { nodes: GraphNode[]; edges: GraphEdge[] };
+  suspects: Suspect[];
+  summary: {
+    dead: number;
+    uncertain: number;
+    alive: number;
+    finops: FinopsResult;
+    sandbox: SandboxResult;
+  };
+}
+
+/** What the agent hunts. */
+export type RepoSpec =
+  | { kind: "local"; path: string }
+  | { kind: "github"; url: string; subpath?: string };

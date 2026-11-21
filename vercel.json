@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "github": { "silent": true },
+  "functions": {
+    "src/app/api/hunt/route.ts": { "maxDuration": 60 }
+  }
+}

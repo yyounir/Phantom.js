@@ -1,0 +1,45 @@
+# Continuous Haunting — Phantom.js runs on every PR touching source code.
+# It scans the PR's repo state (local checkout) and comments with AST evidence
+# + FinOps impact before merge. Read-only: it never pushes or opens a PR.
+name: Phantom Haunt
+
+on:
+  pull_request:
+    paths:
+      - "**/*.ts"
+      - "**/*.tsx"
+      - "**/*.js"
+      - "**/*.jsx"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  haunt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build AST MCP server
+        run: npm run mcp:build
+
+      - name: Hunt (read-only scan of the checked-out repo)
+        run: npx tsx scripts/haunt.ts . > haunt-report.md
+
+      - name: Comment on PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: haunt-report.md
+
+      - name: Job summary
+        run: cat haunt-report.md >> "$GITHUB_STEP_SUMMARY"

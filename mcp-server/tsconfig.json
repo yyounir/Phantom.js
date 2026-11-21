@@ -8,7 +8,8 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "declaration": false,
+    "declaration": true,
+    "declarationMap": false,
     "resolveJsonModule": true,
     "lib": ["ES2022"]
   },

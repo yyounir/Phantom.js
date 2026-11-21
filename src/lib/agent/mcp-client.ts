@@ -1,51 +1,45 @@
 /**
- * Phantom.js — MCP Client
+ * Phantom.js — MCP Client (in-process / serverless)
  * ============================================================================
- * A thin wrapper around the MCP SDK client that spawns the local Phantom AST
- * server over stdio, completes the handshake, and exposes listTools/callTool.
+ * Links an in-memory MCP client+server pair so the agent can call the AST/
+ * FinOps/sandbox tools WITHOUT spawning a subprocess. This is what makes the
+ * agent runnable on Vercel serverless (stdio + long-lived children are not
+ * available there).
  *
- * The agent talks to the repo it is analyzing ONLY through this client. There
- * is no other path to the filesystem — that is the security boundary.
+ * The decoupling is preserved: the agent only ever sees the finite, read-only
+ * tool surface advertised by the server. It cannot touch the filesystem or
+ * shell directly — only call vetted tools with bounded inputs.
  *
- * Transport: stdio (local dev / hackathon demo).
- *   On Vercel serverless you cannot spawn a long-lived stdio subprocess. Swap
- *   StdioClientTransport for the Streamable HTTP transport and host the AST
- *   server as a small HTTP service (or run the agent in a queue worker). The
- *   tool surface and agent loop are unchanged.
+ * For a fully network-decoupled deploy, swap InMemoryTransport for the
+ * Streamable HTTP transport (host the AST server as a small HTTP service).
+ * The tool surface and the agent loop are unchanged.
  */
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
-import * as path from "node:path";
-
-/** Where the built server lives after `npm run mcp:build`. */
-const SERVER_ENTRY = path.join(process.cwd(), "mcp-server", "dist", "index.js");
+import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
+import { createPhantomServer, type RepoSource } from "../mcp/mcp-server";
 
 export interface PhantomMcpClient {
-  /** Return the names of the tools the server advertises. */
   listTools(): Promise<string[]>;
-  /** Call a tool and parse its text JSON content into the given type. */
   callTool<T = unknown>(name: string, args: Record<string, unknown>): Promise<T>;
-  /** Close the stdio transport (terminates the server subprocess). */
   close(): Promise<void>;
 }
 
 /**
- * Spawn the local AST server and complete the MCP handshake.
- * Throws if the server cannot be started or fails to handshake.
+ * Build an in-memory MCP server over `repo` and link a client to it.
+ * Both live in the current process; the protocol contract is unchanged.
  */
-export async function connectPhantomServer(): Promise<PhantomMcpClient> {
-  const transport = new StdioClientTransport({
-    command: "node",
-    args: [SERVER_ENTRY],
-  });
+export async function connectPhantomServer(repo: RepoSource): Promise<PhantomMcpClient> {
+  const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
+
+  const server = createPhantomServer(repo);
+  await server.connect(serverTransport);
 
   const client = new Client(
     { name: "phantom-agent", version: "0.1.0" },
     { capabilities: {} },
   );
-
-  await client.connect(transport);
+  await client.connect(clientTransport);
 
   return {
     async listTools() {
@@ -54,8 +48,7 @@ export async function connectPhantomServer(): Promise<PhantomMcpClient> {
     },
 
     async callTool<T = unknown>(name: string, args: Record<string, unknown>): Promise<T> {
-      // Cast to a structural shape so we don't depend on the SDK's complex
-      // generic callTool overloads (whose inferred type varies across versions).
+      // Structural cast — don't depend on the SDK's complex callTool overloads.
       const res = (await client.callTool({ name, arguments: args })) as {
         content?: Array<{ type: string; text?: string }>;
       };
@@ -67,7 +60,16 @@ export async function connectPhantomServer(): Promise<PhantomMcpClient> {
     },
 
     async close() {
-      await transport.close();
+      try {
+        await (client as unknown as { close?: () => Promise<void> }).close?.();
+      } catch {
+        /* ignore */
+      }
+      try {
+        await (server as unknown as { close?: () => Promise<void> }).close?.();
+      } catch {
+        /* ignore */
+      }
     },
   };
 }
