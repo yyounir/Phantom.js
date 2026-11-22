@@ -180,7 +180,7 @@ export default function Home() {
           </button>
         </form>
         <p className="mt-2 text-xs text-zinc-500">
-          Try <code className="rounded bg-white/5 px-1">./sample-repo</code> (local) or a public repo URL. Read-only by default.
+          Try <code className="rounded bg-white/5 px-1">./sample-repo</code> (when on localhost) or any <strong>public</strong> repo URL. Read-only by default.
         </p>
       </section>
 
