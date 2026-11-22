@@ -12,7 +12,7 @@
 html, body {
   height: 100%;
   background-color: #080510;
-  /* Keep body font as a readable sans but allow .creepy class to use Creepster */
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
 /* ─── Haunted background ─────────────────────────────────────────────────── */

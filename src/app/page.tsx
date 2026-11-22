@@ -329,7 +329,7 @@ export default function Home() {
             <Trust title="FOCUS billing" body="FinOps projections reconcile against FOCUS cost-and-usage exports, not guesses." />
             <Trust title="0% FP build guarantee" body="Sandbox + Skeptic mean no removal ships unless the build still compiles." />
           </div>
-          <p className="mt-6 text-center text-xs text-zinc-600">Phantom.js — built for the Halloween AI hackathon.</p>
+          <p className="mt-6 text-center text-xs text-zinc-600">Phantom.js — built for the Kiroween 2026 hackathon.</p>
         </section>
       )}
     </main>
