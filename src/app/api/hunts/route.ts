@@ -1,42 +1,43 @@
-/**
- * /api/hunts — Grimoire CRUD (list + create).
- *   GET  -> { ok, mode, hunts: SavedHuntSummary[] }
- *   POST { result, notes?, status? } -> { ok, mode, hunt: SavedHuntSummary }  (201)
- *
- * Backed by Supabase when configured, else an in-memory store (demo mode).
- * The store is server-only (imports supabase-js); the route is the only caller.
- */
+import { NextResponse } from 'next/server';
+import { join } from 'path';
+import { promises as fs } from 'fs';
 
-import { NextRequest, NextResponse } from "next/server";
-import { getStore } from "@/lib/hunts/store";
+const dataPath = join(process.cwd(), 'src', 'data', 'hunts.json');
 
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
-export async function GET() {
+async function readData() {
   try {
-    const store = getStore();
-    const hunts = await store.list();
-    return NextResponse.json({ ok: true, mode: store.mode, hunts });
-  } catch (err) {
-    return NextResponse.json({ ok: false, error: String(err) }, { status: 500 });
+    const txt = await fs.readFile(dataPath, 'utf8');
+    return JSON.parse(txt);
+  } catch {
+    return [];
   }
 }
 
-export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    if (!body?.result) {
-      return NextResponse.json({ ok: false, error: "result is required" }, { status: 400 });
-    }
-    const store = getStore();
-    const hunt = await store.create({
-      result: body.result,
-      notes: body.notes ?? null,
-      status: body.status,
-    });
-    return NextResponse.json({ ok: true, mode: store.mode, hunt }, { status: 201 });
-  } catch (err) {
-    return NextResponse.json({ ok: false, error: String(err) }, { status: 500 });
+async function writeData(data: any[]) {
+  await fs.writeFile(dataPath, JSON.stringify(data, null, 2));
+}
+
+// List all hunts (optional)
+export async function GET() {
+  const hunts = await readData();
+  return NextResponse.json(hunts);
+}
+
+// Create a new hunt entry
+export async function POST(request: Request) {
+  const body = await request.json();
+  const { result } = body;
+  if (!result) {
+    return NextResponse.json({ ok: false, error: 'Missing result' }, { status: 400 });
   }
+  const hunts = await readData();
+  const newHunt = {
+    id: crypto.randomUUID(),
+    result,
+    createdAt: new Date().toISOString(),
+    mode: 'memory', // demo mode – could be 'supabase' in prod
+  };
+  hunts.push(newHunt);
+  await writeData(hunts);
+  return NextResponse.json({ ok: true, hunt: newHunt, mode: newHunt.mode }, { status: 201 });
 }

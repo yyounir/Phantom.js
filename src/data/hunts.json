@@ -1,0 +1,1497 @@
+[
+  {
+    "id": "f49f5086-9fc1-42dc-a53a-306eeab218e3",
+    "result": {
+      "repo": {
+        "kind": "github",
+        "ref": "yyounir/Syntactics@main",
+        "url": "https://github.com/yyounir/Syntactics",
+        "filesScanned": 27
+      },
+      "graph": {
+        "nodes": [
+          {
+            "id": "app/api/conversations/[id]/route.ts:GET:4",
+            "label": "GET",
+            "file": "app/api/conversations/[id]/route.ts",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 1
+          },
+          {
+            "id": "app/api/conversations/[id]/route.ts:PATCH:15",
+            "label": "PATCH",
+            "file": "app/api/conversations/[id]/route.ts",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 2
+          },
+          {
+            "id": "app/api/conversations/[id]/route.ts:DELETE:36",
+            "label": "DELETE",
+            "file": "app/api/conversations/[id]/route.ts",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 1
+          },
+          {
+            "id": "app/api/conversations/route.ts:GET:4",
+            "label": "GET",
+            "file": "app/api/conversations/route.ts",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 1
+          },
+          {
+            "id": "app/api/conversations/route.ts:POST:12",
+            "label": "POST",
+            "file": "app/api/conversations/route.ts",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 5
+          },
+          {
+            "id": "app/api/leetcode/chat/route.ts:POST:4",
+            "label": "POST",
+            "file": "app/api/leetcode/chat/route.ts",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 5
+          },
+          {
+            "id": "app/api/leetcode/route.ts:POST:4",
+            "label": "POST",
+            "file": "app/api/leetcode/route.ts",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 5
+          },
+          {
+            "id": "app/leetcode/page.tsx:LeetCodePageContent:22",
+            "label": "LeetCodePageContent",
+            "file": "app/leetcode/page.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 1
+          },
+          {
+            "id": "app/leetcode/page.tsx:handleSubmit:53",
+            "label": "handleSubmit",
+            "file": "app/leetcode/page.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 1
+          },
+          {
+            "id": "components/FullFrameworkView.tsx:FullFrameworkView:8",
+            "label": "FullFrameworkView",
+            "file": "components/FullFrameworkView.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 5
+          },
+          {
+            "id": "components/GuidedChat.tsx:GuidedChat:17",
+            "label": "GuidedChat",
+            "file": "components/GuidedChat.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 5
+          },
+          {
+            "id": "components/GuidedChat.tsx:sendTurn:40",
+            "label": "sendTurn",
+            "file": "components/GuidedChat.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 2
+          },
+          {
+            "id": "components/GuidedChat.tsx:handleSend:73",
+            "label": "handleSend",
+            "file": "components/GuidedChat.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 2
+          },
+          {
+            "id": "components/GuidedChat.tsx:handleDelete:81",
+            "label": "handleDelete",
+            "file": "components/GuidedChat.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 3
+          },
+          {
+            "id": "components/InlineCode.tsx:renderWithInlineCode:3",
+            "label": "renderWithInlineCode",
+            "file": "components/InlineCode.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 7
+          },
+          {
+            "id": "components/InlineCode.tsx:splitSteps:16",
+            "label": "splitSteps",
+            "file": "components/InlineCode.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 1
+          },
+          {
+            "id": "components/InlineCode.tsx:renderAsSteps:23",
+            "label": "renderAsSteps",
+            "file": "components/InlineCode.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 4
+          },
+          {
+            "id": "components/LeetCodeForm.tsx:LeetCodeForm:24",
+            "label": "LeetCodeForm",
+            "file": "components/LeetCodeForm.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 4
+          },
+          {
+            "id": "components/SaveButton.tsx:SaveButton:8",
+            "label": "SaveButton",
+            "file": "components/SaveButton.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 7
+          },
+          {
+            "id": "components/SaveButton.tsx:handleSave:19",
+            "label": "handleSave",
+            "file": "components/SaveButton.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 1
+          },
+          {
+            "id": "components/Sidebar.tsx:Sidebar:17",
+            "label": "Sidebar",
+            "file": "components/Sidebar.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 4
+          },
+          {
+            "id": "components/Sidebar.tsx:startRename:30",
+            "label": "startRename",
+            "file": "components/Sidebar.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 1
+          },
+          {
+            "id": "components/Sidebar.tsx:submitRename:35",
+            "label": "submitRename",
+            "file": "components/Sidebar.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 2
+          },
+          {
+            "id": "components/Sidebar.tsx:handleDelete:48",
+            "label": "handleDelete",
+            "file": "components/Sidebar.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 3
+          },
+          {
+            "id": "components/visualization/ArrayView.tsx:ArrayView:4",
+            "label": "ArrayView",
+            "file": "components/visualization/ArrayView.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 3
+          },
+          {
+            "id": "components/visualization/LinkedListView.tsx:LinkedListView:4",
+            "label": "LinkedListView",
+            "file": "components/visualization/LinkedListView.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 3
+          },
+          {
+            "id": "components/visualization/RecursionView.tsx:RecursionView:4",
+            "label": "RecursionView",
+            "file": "components/visualization/RecursionView.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 3
+          },
+          {
+            "id": "components/visualization/TreeView.tsx:TreeNode:4",
+            "label": "TreeNode",
+            "file": "components/visualization/TreeView.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 3
+          },
+          {
+            "id": "components/visualization/TreeView.tsx:TreeView:34",
+            "label": "TreeView",
+            "file": "components/visualization/TreeView.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 3
+          },
+          {
+            "id": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12",
+            "label": "VisualizationStepper",
+            "file": "components/visualization/VisualizationStepper.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 6
+          },
+          {
+            "id": "lib/gemini.ts:getClient:11",
+            "label": "getClient",
+            "file": "lib/gemini.ts",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 2
+          },
+          {
+            "id": "lib/gemini.ts:generateFullFramework:76",
+            "label": "generateFullFramework",
+            "file": "lib/gemini.ts",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 2
+          },
+          {
+            "id": "lib/gemini.ts:generateGuidedReply:150",
+            "label": "generateGuidedReply",
+            "file": "lib/gemini.ts",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 2
+          },
+          {
+            "id": "lib/theme-context.tsx:ThemeProvider:12",
+            "label": "ThemeProvider",
+            "file": "lib/theme-context.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 3
+          },
+          {
+            "id": "lib/theme-context.tsx:toggleTheme:28",
+            "label": "toggleTheme",
+            "file": "lib/theme-context.tsx",
+            "verdict": "alive",
+            "isExported": false,
+            "referenceCount": 5
+          },
+          {
+            "id": "lib/theme-context.tsx:useTheme:35",
+            "label": "useTheme",
+            "file": "lib/theme-context.tsx",
+            "verdict": "alive",
+            "isExported": true,
+            "referenceCount": 2
+          }
+        ],
+        "edges": [
+          {
+            "id": "app/api/conversations/route.ts:GET:4->app/api/conversations/[id]/route.ts:GET:4",
+            "source": "app/api/conversations/route.ts:GET:4",
+            "target": "app/api/conversations/[id]/route.ts:GET:4"
+          },
+          {
+            "id": "app/api/conversations/[id]/route.ts:GET:4->app/api/conversations/route.ts:GET:4",
+            "source": "app/api/conversations/[id]/route.ts:GET:4",
+            "target": "app/api/conversations/route.ts:GET:4"
+          },
+          {
+            "id": "app/api/leetcode/chat/route.ts:POST:4->app/api/conversations/route.ts:POST:12",
+            "source": "app/api/leetcode/chat/route.ts:POST:4",
+            "target": "app/api/conversations/route.ts:POST:12"
+          },
+          {
+            "id": "app/api/leetcode/route.ts:POST:4->app/api/conversations/route.ts:POST:12",
+            "source": "app/api/leetcode/route.ts:POST:4",
+            "target": "app/api/conversations/route.ts:POST:12"
+          },
+          {
+            "id": "app/api/conversations/route.ts:POST:12->app/api/leetcode/chat/route.ts:POST:4",
+            "source": "app/api/conversations/route.ts:POST:12",
+            "target": "app/api/leetcode/chat/route.ts:POST:4"
+          },
+          {
+            "id": "app/api/leetcode/route.ts:POST:4->app/api/leetcode/chat/route.ts:POST:4",
+            "source": "app/api/leetcode/route.ts:POST:4",
+            "target": "app/api/leetcode/chat/route.ts:POST:4"
+          },
+          {
+            "id": "app/api/conversations/route.ts:POST:12->app/api/leetcode/route.ts:POST:4",
+            "source": "app/api/conversations/route.ts:POST:12",
+            "target": "app/api/leetcode/route.ts:POST:4"
+          },
+          {
+            "id": "app/api/leetcode/chat/route.ts:POST:4->app/api/leetcode/route.ts:POST:4",
+            "source": "app/api/leetcode/chat/route.ts:POST:4",
+            "target": "app/api/leetcode/route.ts:POST:4"
+          },
+          {
+            "id": "app/leetcode/page.tsx:LeetCodePage:140->app/leetcode/page.tsx:LeetCodePageContent:22",
+            "source": "app/leetcode/page.tsx:LeetCodePage:140",
+            "target": "app/leetcode/page.tsx:LeetCodePageContent:22"
+          },
+          {
+            "id": "app/leetcode/page.tsx:LeetCodePageContent:22->app/leetcode/page.tsx:handleSubmit:53",
+            "source": "app/leetcode/page.tsx:LeetCodePageContent:22",
+            "target": "app/leetcode/page.tsx:handleSubmit:53"
+          },
+          {
+            "id": "app/leetcode/page.tsx:LeetCodePageContent:22->components/FullFrameworkView.tsx:FullFrameworkView:8",
+            "source": "app/leetcode/page.tsx:LeetCodePageContent:22",
+            "target": "components/FullFrameworkView.tsx:FullFrameworkView:8"
+          },
+          {
+            "id": "app/leetcode/page.tsx:LeetCodePageContent:22->components/GuidedChat.tsx:GuidedChat:17",
+            "source": "app/leetcode/page.tsx:LeetCodePageContent:22",
+            "target": "components/GuidedChat.tsx:GuidedChat:17"
+          },
+          {
+            "id": "components/GuidedChat.tsx:GuidedChat:17->components/GuidedChat.tsx:sendTurn:40",
+            "source": "components/GuidedChat.tsx:GuidedChat:17",
+            "target": "components/GuidedChat.tsx:sendTurn:40"
+          },
+          {
+            "id": "components/GuidedChat.tsx:handleSend:73->components/GuidedChat.tsx:sendTurn:40",
+            "source": "components/GuidedChat.tsx:handleSend:73",
+            "target": "components/GuidedChat.tsx:sendTurn:40"
+          },
+          {
+            "id": "components/GuidedChat.tsx:GuidedChat:17->components/GuidedChat.tsx:handleSend:73",
+            "source": "components/GuidedChat.tsx:GuidedChat:17",
+            "target": "components/GuidedChat.tsx:handleSend:73"
+          },
+          {
+            "id": "components/GuidedChat.tsx:GuidedChat:17->components/GuidedChat.tsx:handleDelete:81",
+            "source": "components/GuidedChat.tsx:GuidedChat:17",
+            "target": "components/GuidedChat.tsx:handleDelete:81"
+          },
+          {
+            "id": "components/Sidebar.tsx:handleDelete:48->components/GuidedChat.tsx:handleDelete:81",
+            "source": "components/Sidebar.tsx:handleDelete:48",
+            "target": "components/GuidedChat.tsx:handleDelete:81"
+          },
+          {
+            "id": "components/Sidebar.tsx:Sidebar:17->components/GuidedChat.tsx:handleDelete:81",
+            "source": "components/Sidebar.tsx:Sidebar:17",
+            "target": "components/GuidedChat.tsx:handleDelete:81"
+          },
+          {
+            "id": "components/FullFrameworkView.tsx:FullFrameworkView:8->components/InlineCode.tsx:renderWithInlineCode:3",
+            "source": "components/FullFrameworkView.tsx:FullFrameworkView:8",
+            "target": "components/InlineCode.tsx:renderWithInlineCode:3"
+          },
+          {
+            "id": "components/InlineCode.tsx:renderAsSteps:23->components/InlineCode.tsx:renderWithInlineCode:3",
+            "source": "components/InlineCode.tsx:renderAsSteps:23",
+            "target": "components/InlineCode.tsx:renderWithInlineCode:3"
+          },
+          {
+            "id": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12->components/InlineCode.tsx:renderWithInlineCode:3",
+            "source": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12",
+            "target": "components/InlineCode.tsx:renderWithInlineCode:3"
+          },
+          {
+            "id": "components/InlineCode.tsx:renderAsSteps:23->components/InlineCode.tsx:splitSteps:16",
+            "source": "components/InlineCode.tsx:renderAsSteps:23",
+            "target": "components/InlineCode.tsx:splitSteps:16"
+          },
+          {
+            "id": "components/FullFrameworkView.tsx:FullFrameworkView:8->components/InlineCode.tsx:renderAsSteps:23",
+            "source": "components/FullFrameworkView.tsx:FullFrameworkView:8",
+            "target": "components/InlineCode.tsx:renderAsSteps:23"
+          },
+          {
+            "id": "components/GuidedChat.tsx:GuidedChat:17->components/InlineCode.tsx:renderAsSteps:23",
+            "source": "components/GuidedChat.tsx:GuidedChat:17",
+            "target": "components/InlineCode.tsx:renderAsSteps:23"
+          },
+          {
+            "id": "app/leetcode/page.tsx:LeetCodePageContent:22->components/LeetCodeForm.tsx:LeetCodeForm:24",
+            "source": "app/leetcode/page.tsx:LeetCodePageContent:22",
+            "target": "components/LeetCodeForm.tsx:LeetCodeForm:24"
+          },
+          {
+            "id": "components/FullFrameworkView.tsx:FullFrameworkView:8->components/SaveButton.tsx:SaveButton:8",
+            "source": "components/FullFrameworkView.tsx:FullFrameworkView:8",
+            "target": "components/SaveButton.tsx:SaveButton:8"
+          },
+          {
+            "id": "components/GuidedChat.tsx:GuidedChat:17->components/SaveButton.tsx:SaveButton:8",
+            "source": "components/GuidedChat.tsx:GuidedChat:17",
+            "target": "components/SaveButton.tsx:SaveButton:8"
+          },
+          {
+            "id": "components/SaveButton.tsx:SaveButton:8->components/SaveButton.tsx:handleSave:19",
+            "source": "components/SaveButton.tsx:SaveButton:8",
+            "target": "components/SaveButton.tsx:handleSave:19"
+          },
+          {
+            "id": "app/layout.tsx:RootLayout:24->components/Sidebar.tsx:Sidebar:17",
+            "source": "app/layout.tsx:RootLayout:24",
+            "target": "components/Sidebar.tsx:Sidebar:17"
+          },
+          {
+            "id": "components/Sidebar.tsx:Sidebar:17->components/Sidebar.tsx:startRename:30",
+            "source": "components/Sidebar.tsx:Sidebar:17",
+            "target": "components/Sidebar.tsx:startRename:30"
+          },
+          {
+            "id": "components/Sidebar.tsx:Sidebar:17->components/Sidebar.tsx:submitRename:35",
+            "source": "components/Sidebar.tsx:Sidebar:17",
+            "target": "components/Sidebar.tsx:submitRename:35"
+          },
+          {
+            "id": "components/GuidedChat.tsx:handleDelete:81->components/Sidebar.tsx:handleDelete:48",
+            "source": "components/GuidedChat.tsx:handleDelete:81",
+            "target": "components/Sidebar.tsx:handleDelete:48"
+          },
+          {
+            "id": "components/GuidedChat.tsx:GuidedChat:17->components/Sidebar.tsx:handleDelete:48",
+            "source": "components/GuidedChat.tsx:GuidedChat:17",
+            "target": "components/Sidebar.tsx:handleDelete:48"
+          },
+          {
+            "id": "components/Sidebar.tsx:Sidebar:17->components/Sidebar.tsx:handleDelete:48",
+            "source": "components/Sidebar.tsx:Sidebar:17",
+            "target": "components/Sidebar.tsx:handleDelete:48"
+          },
+          {
+            "id": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12->components/visualization/ArrayView.tsx:ArrayView:4",
+            "source": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12",
+            "target": "components/visualization/ArrayView.tsx:ArrayView:4"
+          },
+          {
+            "id": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12->components/visualization/LinkedListView.tsx:LinkedListView:4",
+            "source": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12",
+            "target": "components/visualization/LinkedListView.tsx:LinkedListView:4"
+          },
+          {
+            "id": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12->components/visualization/RecursionView.tsx:RecursionView:4",
+            "source": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12",
+            "target": "components/visualization/RecursionView.tsx:RecursionView:4"
+          },
+          {
+            "id": "components/visualization/TreeView.tsx:TreeView:34->components/visualization/TreeView.tsx:TreeNode:4",
+            "source": "components/visualization/TreeView.tsx:TreeView:34",
+            "target": "components/visualization/TreeView.tsx:TreeNode:4"
+          },
+          {
+            "id": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12->components/visualization/TreeView.tsx:TreeView:34",
+            "source": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12",
+            "target": "components/visualization/TreeView.tsx:TreeView:34"
+          },
+          {
+            "id": "components/FullFrameworkView.tsx:FullFrameworkView:8->components/visualization/VisualizationStepper.tsx:VisualizationStepper:12",
+            "source": "components/FullFrameworkView.tsx:FullFrameworkView:8",
+            "target": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12"
+          },
+          {
+            "id": "components/GuidedChat.tsx:GuidedChat:17->components/visualization/VisualizationStepper.tsx:VisualizationStepper:12",
+            "source": "components/GuidedChat.tsx:GuidedChat:17",
+            "target": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12"
+          },
+          {
+            "id": "lib/gemini.ts:generateFullFramework:76->lib/gemini.ts:getClient:11",
+            "source": "lib/gemini.ts:generateFullFramework:76",
+            "target": "lib/gemini.ts:getClient:11"
+          },
+          {
+            "id": "lib/gemini.ts:generateGuidedReply:150->lib/gemini.ts:getClient:11",
+            "source": "lib/gemini.ts:generateGuidedReply:150",
+            "target": "lib/gemini.ts:getClient:11"
+          },
+          {
+            "id": "app/api/leetcode/route.ts:POST:4->lib/gemini.ts:generateFullFramework:76",
+            "source": "app/api/leetcode/route.ts:POST:4",
+            "target": "lib/gemini.ts:generateFullFramework:76"
+          },
+          {
+            "id": "app/api/leetcode/chat/route.ts:POST:4->lib/gemini.ts:generateGuidedReply:150",
+            "source": "app/api/leetcode/chat/route.ts:POST:4",
+            "target": "lib/gemini.ts:generateGuidedReply:150"
+          },
+          {
+            "id": "app/layout.tsx:RootLayout:24->lib/theme-context.tsx:ThemeProvider:12",
+            "source": "app/layout.tsx:RootLayout:24",
+            "target": "lib/theme-context.tsx:ThemeProvider:12"
+          },
+          {
+            "id": "components/Sidebar.tsx:Sidebar:17->lib/theme-context.tsx:toggleTheme:28",
+            "source": "components/Sidebar.tsx:Sidebar:17",
+            "target": "lib/theme-context.tsx:toggleTheme:28"
+          },
+          {
+            "id": "lib/theme-context.tsx:ThemeProvider:12->lib/theme-context.tsx:toggleTheme:28",
+            "source": "lib/theme-context.tsx:ThemeProvider:12",
+            "target": "lib/theme-context.tsx:toggleTheme:28"
+          },
+          {
+            "id": "components/Sidebar.tsx:Sidebar:17->lib/theme-context.tsx:useTheme:35",
+            "source": "components/Sidebar.tsx:Sidebar:17",
+            "target": "lib/theme-context.tsx:useTheme:35"
+          }
+        ]
+      },
+      "suspects": [
+        {
+          "id": "app/api/conversations/[id]/route.ts:GET:4",
+          "file": "app/api/conversations/[id]/route.ts",
+          "functionName": "GET",
+          "kind": "function",
+          "startLine": 4,
+          "endLine": 13,
+          "isExported": true,
+          "referenceCount": 1,
+          "referenceKinds": [
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 1 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "app/api/conversations/[id]/route.ts:PATCH:15",
+          "file": "app/api/conversations/[id]/route.ts",
+          "functionName": "PATCH",
+          "kind": "function",
+          "startLine": 15,
+          "endLine": 34,
+          "isExported": true,
+          "referenceCount": 2,
+          "referenceKinds": [
+            "string-literal"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 2 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: string-literal usage → ALIVE (possible reflection/lookup map)."
+          ]
+        },
+        {
+          "id": "app/api/conversations/[id]/route.ts:DELETE:36",
+          "file": "app/api/conversations/[id]/route.ts",
+          "functionName": "DELETE",
+          "kind": "function",
+          "startLine": 36,
+          "endLine": 40,
+          "isExported": true,
+          "referenceCount": 1,
+          "referenceKinds": [
+            "string-literal"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 1 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: string-literal usage → ALIVE (possible reflection/lookup map)."
+          ]
+        },
+        {
+          "id": "app/api/conversations/route.ts:GET:4",
+          "file": "app/api/conversations/route.ts",
+          "functionName": "GET",
+          "kind": "function",
+          "startLine": 4,
+          "endLine": 10,
+          "isExported": true,
+          "referenceCount": 1,
+          "referenceKinds": [
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 1 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "app/api/conversations/route.ts:POST:12",
+          "file": "app/api/conversations/route.ts",
+          "functionName": "POST",
+          "kind": "function",
+          "startLine": 12,
+          "endLine": 44,
+          "isExported": true,
+          "referenceCount": 5,
+          "referenceKinds": [
+            "call",
+            "string-literal"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 5 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: string-literal usage → ALIVE (possible reflection/lookup map)."
+          ]
+        },
+        {
+          "id": "app/api/leetcode/chat/route.ts:POST:4",
+          "file": "app/api/leetcode/chat/route.ts",
+          "functionName": "POST",
+          "kind": "function",
+          "startLine": 4,
+          "endLine": 32,
+          "isExported": true,
+          "referenceCount": 5,
+          "referenceKinds": [
+            "call",
+            "string-literal"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 5 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: string-literal usage → ALIVE (possible reflection/lookup map)."
+          ]
+        },
+        {
+          "id": "app/api/leetcode/route.ts:POST:4",
+          "file": "app/api/leetcode/route.ts",
+          "functionName": "POST",
+          "kind": "function",
+          "startLine": 4,
+          "endLine": 28,
+          "isExported": true,
+          "referenceCount": 5,
+          "referenceKinds": [
+            "call",
+            "string-literal"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 5 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: string-literal usage → ALIVE (possible reflection/lookup map)."
+          ]
+        },
+        {
+          "id": "app/leetcode/page.tsx:LeetCodePageContent:22",
+          "file": "app/leetcode/page.tsx",
+          "functionName": "LeetCodePageContent",
+          "kind": "function",
+          "startLine": 22,
+          "endLine": 138,
+          "isExported": false,
+          "referenceCount": 1,
+          "referenceKinds": [
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 1 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "app/leetcode/page.tsx:handleSubmit:53",
+          "file": "app/leetcode/page.tsx",
+          "functionName": "handleSubmit",
+          "kind": "function",
+          "startLine": 53,
+          "endLine": 83,
+          "isExported": false,
+          "referenceCount": 1,
+          "referenceKinds": [
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 1 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/FullFrameworkView.tsx:FullFrameworkView:8",
+          "file": "components/FullFrameworkView.tsx",
+          "functionName": "FullFrameworkView",
+          "kind": "function",
+          "startLine": 8,
+          "endLine": 72,
+          "isExported": true,
+          "referenceCount": 5,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 5 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/GuidedChat.tsx:GuidedChat:17",
+          "file": "components/GuidedChat.tsx",
+          "functionName": "GuidedChat",
+          "kind": "function",
+          "startLine": 17,
+          "endLine": 153,
+          "isExported": true,
+          "referenceCount": 5,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 5 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/GuidedChat.tsx:sendTurn:40",
+          "file": "components/GuidedChat.tsx",
+          "functionName": "sendTurn",
+          "kind": "function",
+          "startLine": 40,
+          "endLine": 64,
+          "isExported": false,
+          "referenceCount": 2,
+          "referenceKinds": [
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 2 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/GuidedChat.tsx:handleSend:73",
+          "file": "components/GuidedChat.tsx",
+          "functionName": "handleSend",
+          "kind": "function",
+          "startLine": 73,
+          "endLine": 79,
+          "isExported": false,
+          "referenceCount": 2,
+          "referenceKinds": [
+            "call",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 2 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/GuidedChat.tsx:handleDelete:81",
+          "file": "components/GuidedChat.tsx",
+          "functionName": "handleDelete",
+          "kind": "function",
+          "startLine": 81,
+          "endLine": 83,
+          "isExported": false,
+          "referenceCount": 3,
+          "referenceKinds": [
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 3 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/InlineCode.tsx:renderWithInlineCode:3",
+          "file": "components/InlineCode.tsx",
+          "functionName": "renderWithInlineCode",
+          "kind": "function",
+          "startLine": 3,
+          "endLine": 14,
+          "isExported": true,
+          "referenceCount": 7,
+          "referenceKinds": [
+            "import",
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 7 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/InlineCode.tsx:splitSteps:16",
+          "file": "components/InlineCode.tsx",
+          "functionName": "splitSteps",
+          "kind": "function",
+          "startLine": 16,
+          "endLine": 21,
+          "isExported": false,
+          "referenceCount": 1,
+          "referenceKinds": [
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 1 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/InlineCode.tsx:renderAsSteps:23",
+          "file": "components/InlineCode.tsx",
+          "functionName": "renderAsSteps",
+          "kind": "function",
+          "startLine": 23,
+          "endLine": 29,
+          "isExported": true,
+          "referenceCount": 4,
+          "referenceKinds": [
+            "import",
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 4 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/LeetCodeForm.tsx:LeetCodeForm:24",
+          "file": "components/LeetCodeForm.tsx",
+          "functionName": "LeetCodeForm",
+          "kind": "function",
+          "startLine": 24,
+          "endLine": 99,
+          "isExported": true,
+          "referenceCount": 4,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 4 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/SaveButton.tsx:SaveButton:8",
+          "file": "components/SaveButton.tsx",
+          "functionName": "SaveButton",
+          "kind": "function",
+          "startLine": 8,
+          "endLine": 63,
+          "isExported": true,
+          "referenceCount": 7,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 7 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/SaveButton.tsx:handleSave:19",
+          "file": "components/SaveButton.tsx",
+          "functionName": "handleSave",
+          "kind": "function",
+          "startLine": 19,
+          "endLine": 37,
+          "isExported": false,
+          "referenceCount": 1,
+          "referenceKinds": [
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 1 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/Sidebar.tsx:Sidebar:17",
+          "file": "components/Sidebar.tsx",
+          "functionName": "Sidebar",
+          "kind": "function",
+          "startLine": 17,
+          "endLine": 120,
+          "isExported": true,
+          "referenceCount": 4,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 4 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/Sidebar.tsx:startRename:30",
+          "file": "components/Sidebar.tsx",
+          "functionName": "startRename",
+          "kind": "function",
+          "startLine": 30,
+          "endLine": 33,
+          "isExported": false,
+          "referenceCount": 1,
+          "referenceKinds": [
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 1 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/Sidebar.tsx:submitRename:35",
+          "file": "components/Sidebar.tsx",
+          "functionName": "submitRename",
+          "kind": "function",
+          "startLine": 35,
+          "endLine": 46,
+          "isExported": false,
+          "referenceCount": 2,
+          "referenceKinds": [
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 2 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/Sidebar.tsx:handleDelete:48",
+          "file": "components/Sidebar.tsx",
+          "functionName": "handleDelete",
+          "kind": "function",
+          "startLine": 48,
+          "endLine": 51,
+          "isExported": false,
+          "referenceCount": 3,
+          "referenceKinds": [
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 3 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/visualization/ArrayView.tsx:ArrayView:4",
+          "file": "components/visualization/ArrayView.tsx",
+          "functionName": "ArrayView",
+          "kind": "function",
+          "startLine": 4,
+          "endLine": 28,
+          "isExported": true,
+          "referenceCount": 3,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 3 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/visualization/LinkedListView.tsx:LinkedListView:4",
+          "file": "components/visualization/LinkedListView.tsx",
+          "functionName": "LinkedListView",
+          "kind": "function",
+          "startLine": 4,
+          "endLine": 23,
+          "isExported": true,
+          "referenceCount": 3,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 3 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/visualization/RecursionView.tsx:RecursionView:4",
+          "file": "components/visualization/RecursionView.tsx",
+          "functionName": "RecursionView",
+          "kind": "function",
+          "startLine": 4,
+          "endLine": 22,
+          "isExported": true,
+          "referenceCount": 3,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 3 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/visualization/TreeView.tsx:TreeNode:4",
+          "file": "components/visualization/TreeView.tsx",
+          "functionName": "TreeNode",
+          "kind": "function",
+          "startLine": 4,
+          "endLine": 32,
+          "isExported": false,
+          "referenceCount": 3,
+          "referenceKinds": [
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 3 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/visualization/TreeView.tsx:TreeView:34",
+          "file": "components/visualization/TreeView.tsx",
+          "functionName": "TreeView",
+          "kind": "function",
+          "startLine": 34,
+          "endLine": 42,
+          "isExported": true,
+          "referenceCount": 3,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 3 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "components/visualization/VisualizationStepper.tsx:VisualizationStepper:12",
+          "file": "components/visualization/VisualizationStepper.tsx",
+          "functionName": "VisualizationStepper",
+          "kind": "function",
+          "startLine": 12,
+          "endLine": 53,
+          "isExported": true,
+          "referenceCount": 6,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 6 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "lib/gemini.ts:getClient:11",
+          "file": "lib/gemini.ts",
+          "functionName": "getClient",
+          "kind": "function",
+          "startLine": 11,
+          "endLine": 17,
+          "isExported": false,
+          "referenceCount": 2,
+          "referenceKinds": [
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 2 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "lib/gemini.ts:generateFullFramework:76",
+          "file": "lib/gemini.ts",
+          "functionName": "generateFullFramework",
+          "kind": "function",
+          "startLine": 76,
+          "endLine": 125,
+          "isExported": true,
+          "referenceCount": 2,
+          "referenceKinds": [
+            "import",
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 2 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "lib/gemini.ts:generateGuidedReply:150",
+          "file": "lib/gemini.ts",
+          "functionName": "generateGuidedReply",
+          "kind": "function",
+          "startLine": 150,
+          "endLine": 199,
+          "isExported": true,
+          "referenceCount": 2,
+          "referenceKinds": [
+            "import",
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 2 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "lib/theme-context.tsx:ThemeProvider:12",
+          "file": "lib/theme-context.tsx",
+          "functionName": "ThemeProvider",
+          "kind": "function",
+          "startLine": 12,
+          "endLine": 33,
+          "isExported": true,
+          "referenceCount": 3,
+          "referenceKinds": [
+            "import",
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 3 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "lib/theme-context.tsx:toggleTheme:28",
+          "file": "lib/theme-context.tsx",
+          "functionName": "toggleTheme",
+          "kind": "arrow",
+          "startLine": 28,
+          "endLine": 28,
+          "isExported": false,
+          "referenceCount": 5,
+          "referenceKinds": [
+            "other"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 5 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        },
+        {
+          "id": "lib/theme-context.tsx:useTheme:35",
+          "file": "lib/theme-context.tsx",
+          "functionName": "useTheme",
+          "kind": "function",
+          "startLine": 35,
+          "endLine": 37,
+          "isExported": true,
+          "referenceCount": 2,
+          "referenceKinds": [
+            "import",
+            "call"
+          ],
+          "reexportedBy": [],
+          "verdict": "alive",
+          "confidence": 0.85,
+          "hunterTrace": [
+            "Hunter: 2 reference(s) found — live, not flagged."
+          ],
+          "skepticTrace": [
+            "Skeptic: no barrel re-export.",
+            "Skeptic: no dynamic import()/require() usage.",
+            "Skeptic: no string-literal (reflection) usage.",
+            "Skeptic: references exist that the Hunter already counted → ALIVE."
+          ]
+        }
+      ],
+      "summary": {
+        "dead": 0,
+        "uncertain": 0,
+        "alive": 36,
+        "finops": {
+          "removedLines": 0,
+          "removedBundleKB": 0,
+          "coldStartDeltaMs": 0,
+          "extraComputeSecondsPerMonth": 0,
+          "projectedSavingsUsd": 0,
+          "buildMinutesSavedPerMonth": 0,
+          "inputs": {
+            "removedLines": 0,
+            "avgBytesPerLine": 40,
+            "monthlyInvocations": 1000000,
+            "coldStartFraction": 0.05,
+            "memoryGb": 1,
+            "pricePerGbSecond": 0.0000166667
+          }
+        },
+        "sandbox": {
+          "safe": true,
+          "issues": [],
+          "note": "In-process transitive reference check. Production applies edits in an isolated sandbox (Docker/E2B) and runs `tsc --noEmit` + the test suite before approving (see ARCHITECTURE.md §3)."
+        }
+      }
+    },
+    "createdAt": "2026-11-22T00:39:18.336Z",
+    "mode": "memory"
+  }
+]

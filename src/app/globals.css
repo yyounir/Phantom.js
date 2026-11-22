@@ -10,22 +10,11 @@ html,
 body {
   height: 100%;
   background-color: #0a0712;
+  font-family: 'Creepster', cursive;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text x='0' y='24' font-size='24' fill='%23fff'>💀</text></svg>"), auto;
 }
 
-/* Card web overlay */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><path d='M0,0 L100,100 M100,0 L0,100' stroke='%23fff' stroke-width='0.5' opacity='0.2'/></svg>") repeat;
-  opacity: 0.05;
-}
-
-.card {
-  position: relative; /* to contain pseudo-element */
-}
-
+/* Haunted dashboard background – dual radial glows */
 body {
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -20%, rgba(168, 85, 247, 0.15), transparent),
@@ -47,8 +36,68 @@ body::before {
   from { opacity: 0.08; }
   to { opacity: 0.18; }
 }
-body {
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(168, 85, 247, 0.15), transparent),
-    radial-gradient(ellipse 60% 50% at 50% 120%, rgba(244, 63, 94, 0.08), transparent);
+
+/* Card styling with web overlay */
+.card {
+  position: relative;
+  background: rgba(26, 26, 26, 0.9);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #ff7518;
+  box-shadow: 0 0 20px rgba(255, 117, 24, 0.3);
+  margin: 1rem 0;
+  padding: 1rem;
 }
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><path d='M0,0 L100,100 M100,0 L0,100' stroke='%23fff' stroke-width='0.5' opacity='0.2'/></svg>") repeat;
+  opacity: 0.05;
+}
+
+/* Neon flicker for headings */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}
+.neon {
+  color: #ff7518;
+  text-shadow: 0 0 5px #ff7518, 0 0 10px #ff7518, 0 0 20px #ff7518;
+  animation: flicker 3s infinite;
+}
+
+/* Pulse for interactive elements */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,117,24,0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255,117,24,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,117,24,0); }
+}
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Input styling */
+.input {
+  background: #2a2a2a;
+  color: #eee;
+  border: 1px solid #444;
+  padding: 0.4rem;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+/* Button styling – reuse .pulse */
+.btn {
+  background: #ff7518;
+  color: #0b0b0b;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
