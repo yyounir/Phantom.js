@@ -1,77 +1,19 @@
 "use client";
 
 import { useMemo, useState, type FormEvent } from "react";
-import ReactFlow, {
-  Background,
-  Controls,
-  MiniMap,
-  Handle,
-  Position,
-  type Node,
-  type Edge,
-  type NodeProps,
-} from "reactflow";
-import "reactflow/dist/style.css";
-import type { HuntResult, Suspect, Verdict } from "@/lib/agent/types";
 import Link from "next/link";
+import { HuntGraph } from "@/components/hunt-graph";
+import { CoTPanel } from "@/components/cot-panel";
+import { COLORS } from "@/lib/theme";
+import type { HuntResult, Suspect, Verdict } from "@/lib/agent/types";
 
 // ---------------------------------------------------------------------------
-// Theme
-// ---------------------------------------------------------------------------
-
-const COLORS: Record<Verdict, string> = {
-  alive: "#00fa00", // terminal green
-  dead: "#c084fc", // neon purple (zombie)
-  uncertain: "#f59e0b", // amber
-};
-const VERDICT_META: Record<Verdict, { emoji: string; label: string }> = {
-  dead: { emoji: "💀", label: "Zombie" },
-  uncertain: { emoji: "🤔", label: "Uncertain" },
-  alive: { emoji: "✅", label: "Alive" },
-};
-
-// ---------------------------------------------------------------------------
-// React Flow custom node
-// ---------------------------------------------------------------------------
-
-interface NodeData {
-  label: string;
-  verdict: Verdict;
-  file: string;
-  referenceCount: number;
-  isExported: boolean;
-  selected?: boolean;
-}
-
-function PhantomNode({ data }: NodeProps) {
-  const d = data as NodeData;
-  const color = COLORS[d.verdict];
-  return (
-    <div
-      className="rounded-lg border px-2 py-1 text-[11px] font-mono"
-      style={{
-        borderColor: color,
-        background: `${color}14`,
-        boxShadow: d.selected ? `0 0 0 2px ${color}` : `0 0 12px ${color}33`,
-        color,
-      }}
-      title={`${d.file} · refs=${d.referenceCount}${d.isExported ? " · exported" : ""}`}
-    >
-      <Handle type="target" position={Position.Left} style={{ background: color, width: 6, height: 6 }} />
-      {d.label}
-      <Handle type="source" position={Position.Right} style={{ background: color, width: 6, height: 6 }} />
-    </div>
-  );
-}
-const nodeTypes = { phantom: PhantomNode };
-
-// ---------------------------------------------------------------------------
-// Small presentational helpers
+// Small presentational helpers (landing only)
 // ---------------------------------------------------------------------------
 
 function FeatureCard({ icon, title, body }: { icon: string; title: string; body: string }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur transition hover:border-fuchsia-400/30 hover:bg-white/10">
+    <div className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur transition hover:border-orange-400/30 hover:bg-white/10">
       <div className="mb-2 text-xl">{icon}</div>
       <h3 className="text-sm font-semibold text-zinc-100">{title}</h3>
       <p className="mt-1 text-xs leading-relaxed text-zinc-400">{body}</p>
@@ -82,7 +24,7 @@ function FeatureCard({ icon, title, body }: { icon: string; title: string; body:
 function Stage({ n, title, body }: { n: string; title: string; body: string }) {
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-      <div className="font-mono text-xs text-fuchsia-400">STAGE {n}</div>
+      <div className="font-mono text-xs text-orange-400">STAGE {n}</div>
       <h3 className="mt-1 text-sm font-semibold text-zinc-100">{title}</h3>
       <p className="mt-1 text-xs leading-relaxed text-zinc-400">{body}</p>
     </div>
@@ -134,6 +76,17 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
+  // Save-to-Grimoire state.
+  const [saving, setSaving] = useState(false);
+  const [savedId, setSavedId] = useState<string | null>(null);
+  const [saveMode, setSaveMode] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
+
+  const selected = useMemo(
+    () => result?.suspects.find((s) => s.id === selectedId) ?? null,
+    [result, selectedId],
+  );
+
   async function hunt(e: FormEvent) {
     e.preventDefault();
     if (!repoInput.trim()) return;
@@ -141,6 +94,9 @@ export default function Home() {
     setError(null);
     setResult(null);
     setSelectedId(null);
+    setSavedId(null);
+    setSaveMode(null);
+    setSaveError(null);
     try {
       const res = await fetch("/api/hunt", {
         method: "POST",
@@ -157,68 +113,54 @@ export default function Home() {
     }
   }
 
-  const selected = useMemo(
-    () => result?.suspects.find((s) => s.id === selectedId) ?? null,
-    [result, selectedId],
-  );
-
-  // Map the agent's graph -> React Flow nodes with a verdict-grouped layout.
-  const { rfNodes, rfEdges } = useMemo(() => {
-    if (!result) return { rfNodes: [] as Node[], rfEdges: [] as Edge[] };
-    const verdictOrder: Verdict[] = ["alive", "uncertain", "dead"];
-    const col = (v: Verdict) => verdictOrder.indexOf(v);
-    const counters = [0, 0, 0];
-    const verdictById = new Map(result.graph.nodes.map((n) => [n.id, n.verdict]));
-
-    const rfNodes: Node[] = result.graph.nodes.map((n) => {
-      const c = col(n.verdict);
-      const y = counters[c]++ * 70;
-      return {
-        id: n.id,
-        type: "phantom",
-        position: { x: c * 280, y },
-        data: {
-          label: n.label,
-          verdict: n.verdict,
-          file: n.file,
-          referenceCount: n.referenceCount,
-          isExported: n.isExported,
-          selected: n.id === selectedId,
-        } as NodeData,
-      };
-    });
-
-    const rfEdges: Edge[] = result.graph.edges.map((e) => {
-      const targetVerdict = verdictById.get(e.target);
-      const zombie = targetVerdict === "dead";
-      return {
-        id: e.id,
-        source: e.source,
-        target: e.target,
-        animated: zombie,
-        style: { stroke: zombie ? COLORS.dead : "#3f3f46", strokeOpacity: zombie ? 0.7 : 0.35, strokeWidth: 1.5 },
-      };
-    });
-    return { rfNodes, rfEdges };
-  }, [result, selectedId]);
+  async function saveHunt() {
+    if (!result) return;
+    setSaving(true);
+    setSaveError(null);
+    try {
+      const res = await fetch("/api/hunts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ result }),
+      });
+      const data = await res.json();
+      if (data.ok && data.hunt) {
+        setSavedId(data.hunt.id);
+        setSaveMode(data.mode);
+      } else {
+        setSaveError(data.error ?? "save failed");
+      }
+    } catch (err) {
+      setSaveError(String(err));
+    } finally {
+      setSaving(false);
+    }
+  }
 
   return (
     <main className="min-h-screen text-zinc-100">
+      {/* nav */}
       <header className="mx-auto flex max-w-5xl items-center justify-between px-4 pt-6">
-        <span className="font-mono text-xs uppercase tracking-widest text-fuchsia-400">Phantom.js</span>
-        <Link href="/features" className="font-mono text-sm text-zinc-400 transition hover:text-zinc-100">
-          Features →
-        </Link>
+        <span className="font-mono text-xs uppercase tracking-widest text-orange-400">Phantom.js</span>
+        <nav className="flex gap-4">
+          <Link href="/features" className="font-mono text-sm text-zinc-400 transition hover:text-zinc-100">
+            Features →
+          </Link>
+          <Link href="/grimoire" className="font-mono text-sm text-zinc-400 transition hover:text-zinc-100">
+            Grimoire →
+          </Link>
+        </nav>
       </header>
+
       {/* Hero */}
-      <section className="mx-auto max-w-5xl px-4 pt-16 pb-10">
-        <p className="font-mono text-xs uppercase tracking-widest text-fuchsia-400">FinOps · Dead-Code Exorcist</p>
+      <section className="mx-auto max-w-5xl px-4 pt-10 pb-10">
+        <p className="font-mono text-xs uppercase tracking-widest text-orange-400">FinOps · Dead-Code Exorcist</p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
           Phantom.js <span className="text-zinc-500">— The Ghost Hunter</span>
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-zinc-300">
-          Paste a GitHub repo. The Hunter flags <span className="text-fuchsia-300">zombie code</span> and{" "}
-          <span className="text-fuchsia-300">vampire dependencies</span>, the Skeptic tries to disprove every flag, a sandbox
+          Paste a GitHub repo. The Hunter flags <span className="text-orange-300">zombie code</span> and{" "}
+          <span className="text-orange-300">vampire dependencies</span>, the Skeptic tries to disprove every flag, a sandbox
           verifies the build still compiles, and Phantom opens a PR with projected cloud savings.
         </p>
 
@@ -227,12 +169,12 @@ export default function Home() {
             value={repoInput}
             onChange={(e) => setRepoInput(e.target.value)}
             placeholder="https://github.com/owner/repo  or  ./local/path"
-            className="flex-1 rounded-lg border border-white/10 bg-black/40 px-4 py-3 font-mono text-sm outline-none backdrop-blur focus:border-fuchsia-400/50"
+            className="flex-1 rounded-lg border border-white/10 bg-black/40 px-4 py-3 font-mono text-sm outline-none backdrop-blur focus:border-orange-400/50"
           />
           <button
             type="submit"
             disabled={loading}
-            className="rounded-lg bg-fuchsia-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-fuchsia-500 disabled:opacity-50"
+            className="rounded-lg bg-orange-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-500 disabled:opacity-50"
           >
             {loading ? "Summoning…" : "👻 Summon the Hunter"}
           </button>
@@ -256,23 +198,12 @@ export default function Home() {
           {!result ? (
             <GraphPreview />
           ) : (
-            <div className="h-[460px]">
-              <ReactFlow
-                nodes={rfNodes}
-                edges={rfEdges}
-                nodeTypes={nodeTypes}
-                onNodeClick={(_e, n) => setSelectedId(n.id)}
-                fitView
-                proOptions={{ hideAttribution: true }}
-              >
-                <Background color="#2a1f3d" gap={20} />
-                <Controls showInteractive={false} />
-                <MiniMap
-                  nodeColor={(n) => COLORS[(n.data as NodeData).verdict]}
-                  maskColor="rgba(0,0,0,0.7)"
-                />
-              </ReactFlow>
-            </div>
+            <HuntGraph
+              nodes={result.graph.nodes}
+              edges={result.graph.edges}
+              selectedId={selectedId}
+              onSelect={setSelectedId}
+            />
           )}
         </div>
       </section>
@@ -284,7 +215,7 @@ export default function Home() {
         </section>
       )}
 
-      {/* Results: summary + CoT panel */}
+      {/* Results: summary + save + CoT panel */}
       {result && (
         <section className="mx-auto max-w-5xl px-4 pb-16">
           <div className="grid gap-4 sm:grid-cols-4">
@@ -292,6 +223,34 @@ export default function Home() {
             <Stat label="💀 Zombies" value={String(result.summary.dead)} accent={COLORS.dead} />
             <Stat label="🤔 Uncertain" value={String(result.summary.uncertain)} accent={COLORS.uncertain} />
             <Stat label="✅ Alive" value={String(result.summary.alive)} accent={COLORS.alive} />
+          </div>
+
+          {/* Save to Grimoire */}
+          <div className="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+            <button
+              onClick={saveHunt}
+              disabled={saving || !!savedId}
+              className="rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-500 disabled:opacity-50"
+            >
+              {savedId ? `Saved ✓` : saving ? "Saving…" : "🔖 Save to Grimoire"}
+            </button>
+            {savedId ? (
+              <>
+                <span className="text-xs text-zinc-400">
+                  saved to the Grimoire
+                  {saveMode === "memory" ? " (demo memory — set SUPABASE_* to persist)" : " (Supabase)"}
+                </span>
+                <Link
+                  href={`/grimoire#${savedId}`}
+                  className="ml-auto font-mono text-sm text-orange-400 transition hover:text-orange-300"
+                >
+                  View in Grimoire →
+                </Link>
+              </>
+            ) : (
+              <span className="text-xs text-zinc-500">Store the graph + Hunter/Skeptic traces to revisit or annotate later.</span>
+            )}
+            {saveError && <span className="text-xs text-rose-300">{saveError}</span>}
           </div>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
@@ -342,6 +301,9 @@ export default function Home() {
             <FeatureCard icon="🔄" title="Continuous GitHub Haunting" body="A GitHub Action comments on every PR with AST evidence and bundle/compute impact before merge — exorcisms run continuously, not just on demand." />
             <FeatureCard icon="📊" title="AI Cost Observability" body="Track LLM token spend vs. cloud savings against FOCUS billing exports. Every scan shows ROI: did the agent save more than it cost to run?" />
           </div>
+          <p className="mt-4 text-center text-xs text-zinc-500">
+            <Link href="/features" className="text-orange-400 hover:text-orange-300">See every capability →</Link>
+          </p>
         </section>
       )}
 
@@ -367,9 +329,7 @@ export default function Home() {
             <Trust title="FOCUS billing" body="FinOps projections reconcile against FOCUS cost-and-usage exports, not guesses." />
             <Trust title="0% FP build guarantee" body="Sandbox + Skeptic mean no removal ships unless the build still compiles." />
           </div>
-          <p className="mt-6 text-center text-xs text-zinc-600">
-            Phantom.js — built for the Kiroween 2026 hackathon.
-          </p>
+          <p className="mt-6 text-center text-xs text-zinc-600">Phantom.js — built for the Halloween AI hackathon.</p>
         </section>
       )}
     </main>
@@ -399,38 +359,6 @@ function Trust({ title, body }: { title: string; body: string }) {
     <div>
       <div className="text-sm font-semibold text-zinc-100">{title}</div>
       <p className="mt-1 text-xs text-zinc-400">{body}</p>
-    </div>
-  );
-}
-
-function CoTPanel({ s }: { s: Suspect }) {
-  return (
-    <div className="mt-2">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="font-mono text-sm text-zinc-100">{s.functionName}</span>
-        <span className="text-xs text-zinc-500">{s.file}:{s.startLine}-{s.endLine}</span>
-        <span className="ml-auto text-xs" style={{ color: COLORS[s.verdict] }}>
-          {VERDICT_META[s.verdict].emoji} {VERDICT_META[s.verdict].label} · {Math.round(s.confidence * 100)}%
-        </span>
-      </div>
-      <div className="mt-3 grid gap-3 sm:grid-cols-2">
-        <div>
-          <div className="font-mono text-[10px] uppercase tracking-widest text-fuchsia-400">Hunter Agent</div>
-          <div className="mt-1 space-y-1 text-xs text-zinc-400">
-            {s.hunterTrace.map((t, i) => <div key={i}>{t}</div>)}
-          </div>
-        </div>
-        <div>
-          <div className="font-mono text-[10px] uppercase tracking-widest text-emerald-400">Skeptic Agent</div>
-          <div className="mt-1 space-y-1 text-xs text-zinc-400">
-            {s.skepticTrace.map((t, i) => <div key={i}>{t}</div>)}
-          </div>
-        </div>
-      </div>
-      <div className="mt-2 text-[10px] text-zinc-600">
-        refs: {s.referenceCount} · kinds: {s.referenceKinds.join(", ") || "none"}
-        {s.reexportedBy.length ? ` · re-exported by: ${s.reexportedBy.join(", ")}` : ""}
-      </div>
     </div>
   );
 }
