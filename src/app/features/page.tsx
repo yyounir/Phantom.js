@@ -148,7 +148,7 @@ export default function FeaturesPage() {
   return (
     <main className="min-h-screen text-zinc-100">
       {/* nav */}
-      <header className="mx-auto flex max-w-5xl items-center justify-between px-4 pt-6">
+      <header className="blood-drip-bar mx-auto flex max-w-5xl items-center justify-between px-4 pt-6 pb-2 mb-4">
         <Link href="/" className="font-mono text-sm text-zinc-400 hover:text-zinc-100">
           ← back to the Hunter
         </Link>
@@ -178,7 +178,7 @@ export default function FeaturesPage() {
             {cat.items.map((f) => (
               <div
                 key={f.title}
-                className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur transition hover:border-fuchsia-400/30 hover:bg-white/10"
+                className="halloween-hover rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur transition hover:bg-white/10"
               >
                 <div className="flex items-center gap-2">
                   <span className="text-xl">{f.icon}</span>

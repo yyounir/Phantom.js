@@ -13,7 +13,7 @@ import type { HuntResult, Suspect, Verdict } from "@/lib/agent/types";
 
 function FeatureCard({ icon, title, body }: { icon: string; title: string; body: string }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur transition hover:border-orange-400/30 hover:bg-white/10">
+    <div className="halloween-hover rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur transition hover:bg-white/10">
       <div className="mb-2 text-xl">{icon}</div>
       <h3 className="text-sm font-semibold text-zinc-100">{title}</h3>
       <p className="mt-1 text-xs leading-relaxed text-zinc-400">{body}</p>
@@ -23,7 +23,7 @@ function FeatureCard({ icon, title, body }: { icon: string; title: string; body:
 
 function Stage({ n, title, body }: { n: string; title: string; body: string }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+    <div className="halloween-hover rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
       <div className="font-mono text-xs text-orange-400">STAGE {n}</div>
       <h3 className="mt-1 text-sm font-semibold text-zinc-100">{title}</h3>
       <p className="mt-1 text-xs leading-relaxed text-zinc-400">{body}</p>
@@ -139,8 +139,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen text-zinc-100">
-      {/* nav */}
-      <header className="mx-auto flex max-w-5xl items-center justify-between px-4 pt-6">
+      {/* nav — blood-drip-bar adds the dripping CSS after-element */}
+      <header className="blood-drip-bar mx-auto flex max-w-5xl items-center justify-between px-4 pt-6 pb-2 mb-4">
         <span className="font-mono text-xs uppercase tracking-widest text-orange-400">Phantom.js</span>
         <nav className="flex gap-4">
           <Link href="/features" className="font-mono text-sm text-zinc-400 transition hover:text-zinc-100">
@@ -155,7 +155,7 @@ export default function Home() {
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-4 pt-10 pb-10">
         <p className="font-mono text-xs uppercase tracking-widest text-orange-400">FinOps · Dead-Code Exorcist</p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl neon">
           Phantom.js <span className="text-zinc-500">— The Ghost Hunter</span>
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-zinc-300">
@@ -254,7 +254,7 @@ export default function Home() {
           </div>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+            <div className="halloween-hover rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
               <div className="font-mono text-xs text-zinc-400">SANDBOX CHECK</div>
               <div
                 className="mt-1 text-lg font-semibold"
@@ -338,7 +338,7 @@ export default function Home() {
 
 function Stat({ label, value, accent }: { label: string; value: string; accent?: string }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+    <div className="halloween-hover rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
       <div className="font-mono text-xs text-zinc-400">{label}</div>
       <div className="mt-1 text-2xl font-bold" style={{ color: accent }}>{value}</div>
     </div>

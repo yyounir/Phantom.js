@@ -2,63 +2,234 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Google Font: Creepster ────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
 :root {
   color-scheme: dark;
 }
 
-html,
-body {
+html, body {
   height: 100%;
-  background-color: #0a0712;
-  font-family: 'Creepster', cursive;
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text x='0' y='24' font-size='24' fill='%23fff'>💀</text></svg>"), auto;
+  background-color: #080510;
+  /* Keep body font as a readable sans but allow .creepy class to use Creepster */
 }
 
-/* Haunted dashboard background – dual radial glows */
+/* ─── Haunted background ─────────────────────────────────────────────────── */
 body {
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(168, 85, 247, 0.15), transparent),
-    radial-gradient(ellipse 60% 50% at 50% 120%, rgba(244, 63, 94, 0.08), transparent);
+    /* Full moon glow at the top-right */
+    radial-gradient(ellipse 18% 18% at 88% 8%, rgba(255,240,180,0.18) 0%, transparent 70%),
+    /* Purple mist from top */
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(168,85,247,0.18), transparent),
+    /* Crimson mist from bottom */
+    radial-gradient(ellipse 60% 50% at 50% 120%, rgba(180,20,40,0.12), transparent);
 }
 
-/* Spider‑web overlay */
-body::before {
+/* ─── Fog layer ──────────────────────────────────────────────────────────── */
+body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><circle cx='100' cy='100' r='95' stroke='%23fff' stroke-width='1' fill='none'/><line x1='0' y1='100' x2='200' y2='100' stroke='%23fff' stroke-width='0.5'/><line x1='100' y1='0' x2='100' y2='200' stroke='%23fff' stroke-width='0.5'/></svg>") repeat;
-  opacity: 0.12;
-  animation: web-fade 8s ease-in-out infinite alternate;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 20% at 20% 100%, rgba(80,0,120,0.18), transparent),
+    radial-gradient(ellipse 60% 20% at 80% 100%, rgba(80,0,120,0.14), transparent);
+  animation: fog-drift 14s ease-in-out infinite alternate;
+}
+@keyframes fog-drift {
+  0%   { transform: translateX(-3%) scaleY(1); opacity: 0.7; }
+  50%  { transform: translateX(0%)  scaleY(1.05); opacity: 1; }
+  100% { transform: translateX(3%)  scaleY(1); opacity: 0.7; }
 }
 
-@keyframes web-fade {
-  from { opacity: 0.08; }
-  to { opacity: 0.18; }
+/* ─── Spider web — corner overlays ──────────────────────────────────────── */
+/* Top-left web */
+.spider-web-tl,
+.spider-web-tr {
+  position: fixed;
+  top: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.55;
+  animation: web-sway 6s ease-in-out infinite alternate;
+}
+.spider-web-tl { left: 0; transform-origin: top left; }
+.spider-web-tr { right: 0; transform-origin: top right; transform: scaleX(-1); }
+
+@keyframes web-sway {
+  0%   { opacity: 0.45; transform: rotate(-1deg); }
+  100% { opacity: 0.65; transform: rotate(1deg); }
+}
+.spider-web-tr { animation-delay: -3s; }
+
+/* Spider dangling on left web */
+.spider {
+  position: fixed;
+  left: 118px;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  z-index: 51;
+  pointer-events: none;
+  animation: spider-drop 8s ease-in-out infinite;
+}
+@keyframes spider-drop {
+  0%   { transform: translateY(10px);  }
+  40%  { transform: translateY(140px); }
+  60%  { transform: translateY(140px); }
+  100% { transform: translateY(10px);  }
 }
 
-/* Card styling with web overlay */
-.card {
+/* ─── Floating bats ──────────────────────────────────────────────────────── */
+.bat {
+  position: fixed;
+  font-size: 1.5rem;
+  pointer-events: none;
+  z-index: 49;
+  opacity: 0.75;
+  animation: bat-fly linear infinite;
+}
+.bat:nth-child(1) { top: 12%;  animation-duration: 18s; animation-delay: 0s;    font-size: 1.1rem; }
+.bat:nth-child(2) { top: 7%;   animation-duration: 24s; animation-delay: -7s;   font-size: 1.5rem; }
+.bat:nth-child(3) { top: 22%;  animation-duration: 20s; animation-delay: -13s;  font-size: 0.9rem; }
+.bat:nth-child(4) { top: 4%;   animation-duration: 28s; animation-delay: -4s;   font-size: 1.3rem; }
+
+@keyframes bat-fly {
+  0%   { transform: translateX(-80px) scaleX(1)  translateY(0);   }
+  25%  { transform: translateX(30vw)  scaleX(1)  translateY(-20px); }
+  50%  { transform: translateX(60vw)  scaleX(1)  translateY(10px);  }
+  75%  { transform: translateX(90vw)  scaleX(-1) translateY(-15px); }
+  100% { transform: translateX(110vw) scaleX(-1) translateY(0);   }
+}
+
+/* ─── Floating ghost ─────────────────────────────────────────────────────── */
+.ghost {
+  position: fixed;
+  font-size: 2.4rem;
+  pointer-events: none;
+  z-index: 48;
+  opacity: 0;
+  filter: blur(1px);
+  animation: ghost-haunt 22s ease-in-out infinite;
+}
+.ghost:nth-child(1) { top: 35%; animation-delay: 0s;    font-size: 2.4rem; }
+.ghost:nth-child(2) { top: 55%; animation-delay: -11s;  font-size: 1.6rem; }
+
+@keyframes ghost-haunt {
+  0%   { opacity: 0;   transform: translateX(-10vw) translateY(0); }
+  10%  { opacity: 0.5; }
+  45%  { opacity: 0.3; transform: translateX(50vw) translateY(-40px); }
+  70%  { opacity: 0.5; transform: translateX(100vw) translateY(20px); }
+  85%  { opacity: 0;   transform: translateX(110vw) translateY(0); }
+  100% { opacity: 0;   transform: translateX(-10vw) translateY(0); }
+}
+
+/* ─── Pumpkins — fixed bottom corners ───────────────────────────────────── */
+.pumpkin {
+  position: fixed;
+  bottom: 1.5rem;
+  pointer-events: none;
+  z-index: 49;
+  font-size: 2.4rem;
+  animation: pumpkin-glow 2.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 8px rgba(255,117,24,0.9));
+}
+.pumpkin-left  { left:  1.5rem; animation-delay: 0s;    }
+.pumpkin-right { right: 1.5rem; animation-delay: -1.2s; }
+
+@keyframes pumpkin-glow {
+  0%   { filter: drop-shadow(0 0 6px  rgba(255,117,24,0.7)); transform: scale(1);    }
+  100% { filter: drop-shadow(0 0 18px rgba(255,200,24,1));   transform: scale(1.07); }
+}
+
+/* ─── Moon ───────────────────────────────────────────────────────────────── */
+.moon {
+  position: fixed;
+  top: 1.2rem;
+  right: 5.5rem;
+  font-size: 2.8rem;
+  pointer-events: none;
+  z-index: 49;
+  filter: drop-shadow(0 0 18px rgba(255,240,180,0.9));
+  animation: moon-glow 4s ease-in-out infinite alternate;
+}
+@keyframes moon-glow {
+  0%   { filter: drop-shadow(0 0 10px rgba(255,240,180,0.6)); transform: scale(1); }
+  100% { filter: drop-shadow(0 0 30px rgba(255,240,180,1));   transform: scale(1.04); }
+}
+
+/* ─── Blood drip on nav header ───────────────────────────────────────────── */
+.blood-drip-bar {
   position: relative;
-  background: rgba(26, 26, 26, 0.9);
-  border-radius: 8px;
-  overflow: hidden;
-  border: 2px solid #ff7518;
-  box-shadow: 0 0 20px rgba(255, 117, 24, 0.3);
-  margin: 1rem 0;
-  padding: 1rem;
 }
-
-.card::before {
+.blood-drip-bar::after {
   content: "";
   position: absolute;
-  inset: 0;
+  bottom: -18px;
+  left: 0;
+  right: 0;
+  height: 20px;
   pointer-events: none;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><path d='M0,0 L100,100 M100,0 L0,100' stroke='%23fff' stroke-width='0.5' opacity='0.2'/></svg>") repeat;
-  opacity: 0.05;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='20'><path d='M0,0 L200,0 M15,0 Q16,8 14,14 Q13,18 15,20 Q17,18 16,14 Q14,8 15,0 M50,0 Q52,10 50,16 Q49,20 51,20 Q53,20 52,16 Q50,10 50,0 M90,0 Q91,6 90,10 Q89,13 91,13 Q93,13 92,10 Q91,6 90,0 M140,0 Q142,12 140,18 Q139,20 141,20 Q143,20 142,18 Q140,12 140,0 M175,0 Q176,7 175,12 Q174,15 176,15 Q178,15 177,12 Q176,7 175,0' stroke='none' fill='%23b91c1c'/></svg>") repeat-x;
+  opacity: 0.85;
+  animation: drip-appear 6s ease-in-out infinite alternate;
+  z-index: 10;
+}
+@keyframes drip-appear {
+  0%   { opacity: 0.6; transform: scaleY(0.7); }
+  100% { opacity: 1;   transform: scaleY(1); }
 }
 
-/* Neon flicker for headings */
+/* ─── Candle flicker (decorative candle emojis) ──────────────────────────── */
+.candle {
+  position: fixed;
+  font-size: 1.8rem;
+  pointer-events: none;
+  z-index: 49;
+  animation: candle-flicker 0.12s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(255,165,0,0.8));
+}
+.candle-left  { bottom: 5.5rem; left:  2.2rem; animation-delay: 0s; }
+.candle-right { bottom: 5.5rem; right: 2.2rem; animation-delay: -0.06s; }
+
+@keyframes candle-flicker {
+  0%   { filter: drop-shadow(0 0 6px  rgba(255,165,0,0.7)); transform: scale(1) rotate(-1deg); }
+  100% { filter: drop-shadow(0 0 16px rgba(255,200,80,1));  transform: scale(1.03) rotate(1deg); }
+}
+
+/* ─── Skull emoji floating up from bottom ────────────────────────────────── */
+.skull-rise {
+  position: fixed;
+  font-size: 1.1rem;
+  pointer-events: none;
+  z-index: 48;
+  opacity: 0;
+  animation: skull-rise 12s ease-in infinite;
+}
+.skull-rise:nth-child(1) { left: 10%;  animation-delay: 0s;   animation-duration: 11s; }
+.skull-rise:nth-child(2) { left: 30%;  animation-delay: -4s;  animation-duration: 14s; }
+.skull-rise:nth-child(3) { left: 60%;  animation-delay: -8s;  animation-duration: 10s; }
+.skull-rise:nth-child(4) { left: 80%;  animation-delay: -2s;  animation-duration: 13s; }
+
+@keyframes skull-rise {
+  0%   { opacity: 0; transform: translateY(100vh) rotate(0deg);   }
+  10%  { opacity: 0.5; }
+  80%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(-10vh) rotate(360deg); }
+}
+
+/* ─── Eye-glow on hover for cards ───────────────────────────────────────── */
+.halloween-hover {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.halloween-hover:hover {
+  box-shadow: 0 0 24px rgba(192,0,255,0.3), 0 0 6px rgba(255,117,24,0.4) inset;
+  border-color: rgba(192,0,255,0.45) !important;
+}
+
+/* ─── Neon flicker for headings ──────────────────────────────────────────── */
 @keyframes flicker {
   0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
   20%, 24%, 55% { opacity: 0.4; }
@@ -69,17 +240,25 @@ body::before {
   animation: flicker 3s infinite;
 }
 
-/* Pulse for interactive elements */
+/* ─── Pulse for interactive elements ────────────────────────────────────── */
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255,117,24,0.7); }
-  70% { box-shadow: 0 0 0 10px rgba(255,117,24,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(255,117,24,0.7); }
+  70%  { box-shadow: 0 0 0 10px rgba(255,117,24,0); }
   100% { box-shadow: 0 0 0 0 rgba(255,117,24,0); }
 }
-.pulse {
-  animation: pulse 2s infinite;
-}
+.pulse { animation: pulse 2s infinite; }
 
-/* Input styling */
+/* ─── Existing card / input / button helpers ─────────────────────────────── */
+.card {
+  position: relative;
+  background: rgba(26,26,26,0.9);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #ff7518;
+  box-shadow: 0 0 20px rgba(255,117,24,0.3);
+  margin: 1rem 0;
+  padding: 1rem;
+}
 .input {
   background: #2a2a2a;
   color: #eee;
@@ -89,8 +268,6 @@ body::before {
   width: 100%;
   margin-bottom: 0.5rem;
 }
-
-/* Button styling – reuse .pulse */
 .btn {
   background: #ff7518;
   color: #0b0b0b;
@@ -101,3 +278,7 @@ body::before {
   margin-right: 0.5rem;
 }
 
+/* ─── Spooky cursor ──────────────────────────────────────────────────────── */
+html, body {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text x='0' y='24' font-size='24' fill='%23fff'>💀</text></svg>"), auto;
+}
